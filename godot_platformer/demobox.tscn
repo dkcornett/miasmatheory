@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Kenny_tilemap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://demobox.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2350.5, 222.5 )
+
+[node name="Node" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 499, 343 )
+
+[node name="TileMap" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65560, 0, 0, 65561, 0, 0, 65562, 0, 0, 65563, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131096, 0, 0, 131097, 0, 0, 131098, 0, 0, 131099, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196632, 0, 0, 196633, 0, 0, 196634, 0, 0, 196635, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262168, 0, 0, 262169, 0, 0, 262170, 0, 0, 262171, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327704, 0, 0, 327705, 0, 0, 327706, 0, 0, 327707, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393238, 10, 0, 393240, 0, 0, 393241, 0, 0, 393242, 0, 0, 393243, 0, 0, 524285, 0, 0, 524286, 0, 0, 524287, 0, 0, 458760, 10, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458767, 2, 0, 458768, 2, 0, 458769, 2, 0, 458770, 2, 0, 458776, 0, 0, 458777, 0, 0, 458778, 0, 0, 458779, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 2, 0, 524289, 2, 0, 524290, 2, 0, 524291, 2, 0, 524292, 2, 0, 524293, 2, 0, 524294, 2, 0, 524295, 2, 0, 524296, 19, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524308, 2, 0, 524309, 2, 0, 524310, 2, 0, 524311, 2, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 752, 703 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 151, 445 )
+shape = SubResource( 1 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2( 752, 703 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( 76.5, -1456 )
+shape = SubResource( 1 )
+
+[connection signal="player_death" from="Player" to="." method="_on_Player_player_death"]
+[connection signal="body_entered" from="Area2D" to="Player" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="Player" method="_on_Area2D_body_entered"]
